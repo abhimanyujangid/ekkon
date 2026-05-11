@@ -2,43 +2,40 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 const isPublicRoute = createRouteMatcher([
-    "/sign-in(/.*)",
-    "/sign-up(/.*)",
-    "/auth(/.*)",
-    "/api/auth(/.*)",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/auth(.*)",
+  "/api/auth(.*)",
 ]);
 
-const isOrgSelectionRoute = createRouteMatcher([
-    "/org-selection(/.*)",
-]);
+const isOrgSelectionRoute = createRouteMatcher(["/org-selection(.*)"]);
 
 export default clerkMiddleware(async (auth, req) => {
-    const { userId , orgId } = await auth();
+  const { userId, orgId } = await auth();
 
-    // When the request is for a public route, we don't need to check for authentication or org selection
-    if (isPublicRoute(req)) {
-        return NextResponse.next();
-    }
-
-    // If the user is not authenticated, redirect to sign-in page
-    if (!userId) {
-        auth.protect();
-        return NextResponse.next();
-    }
-
-    // If the user is authenticated but is on the org selection page, allow them to proceed without checking for org selection
-    if (isOrgSelectionRoute(req)) {
-        return NextResponse.next();
-    }
-
-    // For all protected routes, ensure org is selected
-    if (userId && !orgId) {
-       const orgSelectionUrl = new URL("/org-selection", req.url);
-         return NextResponse.redirect(orgSelectionUrl);
-    }
-
-
+  // Public routes do not need authentication or organization selection.
+  if (isPublicRoute(req)) {
     return NextResponse.next();
+  }
+
+  // Clerk handles the redirect response for signed-out protected requests.
+  if (!userId) {
+    await auth.protect();
+    return;
+  }
+
+  // Authenticated users can choose an organization without already having one selected.
+  if (isOrgSelectionRoute(req)) {
+    return NextResponse.next();
+  }
+
+  // For all protected routes, ensure an organization is selected.
+  if (!orgId) {
+    const orgSelectionUrl = new URL("/org-selection", req.url);
+    return NextResponse.redirect(orgSelectionUrl);
+  }
+
+  return NextResponse.next();
 });
 
 export const config = {
