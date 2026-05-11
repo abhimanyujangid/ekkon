@@ -101,7 +101,7 @@ export function DashboardSidebar() {
     <Sidebar collapsible="icon" className="group">
       <SidebarHeader className="flex flex-col gap-4 pt-4">
         <div className="flex items-center gap-2 pl-1 group-data-[collapsed=icon]:justify-center group-data-[collapsed=icon]:pl-2">
-          <Image src="/logo.svg" alt="Ekkon Logo" width={24} height={24} />
+          <Image src="/logo.png" alt="Ekkon Logo" width={24} height={24} />
           <span className="text-foreground text-lg font-semibold tracking-tighter group-data-[collapsible=icon]:hidden">
             Ekkon
           </span>
