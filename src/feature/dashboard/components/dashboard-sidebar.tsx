@@ -5,29 +5,19 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupAction,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarInput,
-  SidebarInset,
   SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSkeleton,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
-  useSidebar,
 } from "@/src/components/ui/sidebar";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { LucideIcon, User } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import { OrganizationSwitcher, UserButton, useClerk } from "@clerk/nextjs";
 import { Home, LayoutGrid, AudioLines, Volume2, Settings, Headphones } from "lucide-react";
@@ -104,16 +94,16 @@ export function DashboardSidebar() {
 
   const othersMenuItems: MenuItem[] = [
     { title: "Settings", icon: Settings, onClick: () => clerk.openOrganizationProfile() },
-    { title: "Help and support", url: "mailto:support@resonance.ai", icon: Headphones },
+    { title: "Help and support", url: "mailto:support@ekkon.ai", icon: Headphones },
   ];
 
   return (
     <Sidebar collapsible="icon" className="group">
       <SidebarHeader className="flex flex-col gap-4 pt-4">
         <div className="flex items-center gap-2 pl-1 group-data-[collapsed=icon]:justify-center group-data-[collapsed=icon]:pl-2">
-          <Image src="/logo.svg" alt="Resonance Logo" width={24} height={24} />
+          <Image src="/logo.svg" alt="Ekkon Logo" width={24} height={24} />
           <span className="text-foreground text-lg font-semibold tracking-tighter group-data-[collapsible=icon]:hidden">
-            Resonance
+            Ekkon
           </span>
           <SidebarTrigger className="ml-auto lg:hidden" />
         </div>

@@ -13,7 +13,7 @@ export function PageHeader({ title, className }: { title: string; className?: st
       </div>
       <div className="flex items-center gap-3">
         <Button variant="outline" size="sm" asChild>
-          <Link href="mailto:feedback@resonance.com">
+          <Link href="mailto:feedback@ekkon.ai">
             <ThumbsUp className="size-4" />
             <span className="sr-only">Feedback</span>
           </Link>

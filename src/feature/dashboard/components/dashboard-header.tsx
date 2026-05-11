@@ -18,7 +18,7 @@ export function DashboardHeader() {
 
       <div className="hidden items-center gap-3 lg:flex">
         <Button variant="outline" size="sm" asChild>
-          <Link href="mailto:feedback@resonance.com">
+          <Link href="mailto:feedback@ekkon.ai">
             <ThumbsUp className="size-4" />
             <span className="hidden lg:block">Feedback</span>
           </Link>

@@ -2,7 +2,7 @@ import TextToSpeechView from "@/src/feature/text-to-speech/views/text-to-speech-
 import { trpc, HydrateClient, prefetch } from "@/src/trpc/server";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Text to Speech" };
+export const metadata: Metadata = { title: "Text to AI Voice" };
 
 export default async function TextToSpeechPage({
   searchParams,

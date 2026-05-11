@@ -17,11 +17,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Resonance - AI Playground",
-    template: "%s | Resonance - AI Playground",
+    default: "Ekkon - AI Voice Generator",
+    template: "%s | Ekkon - AI Voice Generator",
   },
   description:
-    "Resonance is an AI playground built using Next.js, tRPC, and Tailwind CSS. It offers a collection of AI tools and demos, including text generation, image generation, and more. Explore the capabilities of AI in an interactive and user-friendly environment.",
+    "Ekkon is an AI voice generation platform that turns text into realistic, natural-sounding speech for stories, podcasts, marketing, and product experiences.",
 };
 
 export default function RootLayout({

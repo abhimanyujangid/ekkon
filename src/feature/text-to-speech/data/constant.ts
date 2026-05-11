@@ -12,7 +12,7 @@ export const SUGGESTIONS = [
   {
     icon: Megaphone,
     label: "Marketing copy",
-    text: "Introducing Resonance — the AI-powered text-to-speech platform that brings your words to life with stunning, natural voices.",
+    text: "Introducing Ekkon, the AI voice generation platform that turns your text into realistic, natural-sounding speech.",
   },
   {
     icon: Mic,
