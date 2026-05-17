@@ -60,8 +60,7 @@ model Generation {
 
   voiceName         String
   text              String
-  input             String
-  tamperature       Float
+  temperature       Float
   topP              Float
   topK              Int
   repetitionPenalty Float
