@@ -20,8 +20,8 @@ import modal
 #   --output output.wav
 
 # R2 cloud bucket mount (read-only, replaces Modal Volume)
-R2_BUCKET_NAME = "ekkon"
-R2_ACCOUNT_ID = "80a0f268899519109178490d0eb3ff66"
+R2_BUCKET_NAME = "<r2-bucket-name>"
+R2_ACCOUNT_ID = "<r2-account-id>"
 R2_MOUNT_PATH = "/r2"
 r2_bucket = modal.CloudBucketMount(
     R2_BUCKET_NAME,
