@@ -1,6 +1,13 @@
+
+
+
 # Ekkon
 
 Ekkon is an AI voice generation platform for turning text into realistic, natural-sounding speech. It is built for creators and teams who need quick voice drafts for stories, podcasts, marketing copy, notifications, and product experiences.
+
+<img width="2559" height="963" alt="Screenshot 2026-05-17 at 6 18 29 PM" src="https://github.com/user-attachments/assets/4036b97e-649d-4ad6-a78c-e3fae0cb1a24" />
+
+<img width="2559" height="1305" alt="Screenshot 2026-05-17 at 6 19 25 PM" src="https://github.com/user-attachments/assets/c92d105e-b095-4831-aaa7-6fb7b0c786f1" />
 
 ## Features
 
