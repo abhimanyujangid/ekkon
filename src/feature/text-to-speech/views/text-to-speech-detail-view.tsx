@@ -9,6 +9,8 @@ import {
 } from "@/src/feature/text-to-speech/components/text-to-speech-form";
 import { TTSVoicesProvider } from "@/src/feature/text-to-speech/contexts/tts-voices-context";
 import { SettingsPanel } from "../components/settings-pannel";
+import { VoicePreviewMobile } from "../components/voice-preview-mobile";
+import { VoicePreviewPanel } from "../components/voice-preview-panel";
 // import { VoicePreviewPanel } from "../components/voice-preview-panel";
 // import { VoicePreviewMobile } from "../components/voice-preview-mobile";
 
@@ -54,8 +56,8 @@ export function TextToSpeechDetailView({ generationId }: { generationId: string 
         <div className="flex min-h-0 flex-1 overflow-hidden">
           <div className="flex min-h-0 flex-1 flex-col">
             <TextInputPanel />
-            {/* <VoicePreviewMobile audioUrl={data.audioUrl} voice={generationVoice} text={data.text} /> */}
-            {/* <VoicePreviewPanel audioUrl={data.audioUrl} voice={generationVoice} text={data.text} /> */}
+            <VoicePreviewMobile audioUrl={data.audioUrl} voice={generationVoice} text={data.text} />
+            <VoicePreviewPanel audioUrl={data.audioUrl} voice={generationVoice} text={data.text} />
           </div>
           <SettingsPanel />
         </div>
