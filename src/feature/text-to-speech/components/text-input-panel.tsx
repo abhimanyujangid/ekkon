@@ -13,6 +13,7 @@ import { ttsFormOptions } from "@/src/feature/text-to-speech/components/text-to-
 import { SettingsDrawer } from "./settings-drawer";
 import { HistoryDrawer } from "./history-drawer";
 import { VoiceSelectorButton } from "./voice-selector-button";
+import { PromptSuggestions } from "./prompt-suggestions";
 
 export function TextInputPanel() {
   const form = useTypedAppFormContext(ttsFormOptions);
@@ -84,7 +85,7 @@ export function TextInputPanel() {
           </div>
         ) : (
           <div className="hidden lg:block">
-            {/* <PromptSuggestions onSelect={(prompt) => form.setFieldValue("text", prompt)} /> */}
+            <PromptSuggestions onSelect={(prompt: string) => form.setFieldValue("text", prompt)} />
           </div>
         )}
       </div>
