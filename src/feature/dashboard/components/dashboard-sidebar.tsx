@@ -22,6 +22,7 @@ import { Skeleton } from "@/src/components/ui/skeleton";
 import { OrganizationSwitcher, UserButton, useClerk } from "@clerk/nextjs";
 import { Home, LayoutGrid, AudioLines, Volume2, Settings, Headphones } from "lucide-react";
 import Link from "next/link";
+import { useMounted } from "@/src/hooks/use-mounted";
 
 interface MenuItem {
   title: string;
@@ -84,6 +85,7 @@ function NavSelection({ label, pathName, items }: NavSelectionProps) {
 export function DashboardSidebar() {
   const pathname = usePathname();
   const clerk = useClerk();
+  const mounted = useMounted();
 
   const mainMenuItems: MenuItem[] = [
     { title: "Dashboard", url: "/", icon: Home },
@@ -109,12 +111,10 @@ export function DashboardSidebar() {
         </div>
         <SidebarMenu>
           <SidebarMenuItem>
-            <OrganizationSwitcher
-              hidePersonal
-              fallback={
-                <Skeleton className="border-border h-9 w-full rounded-md border group-data-[collapsible=icon]:size-9" />
-              }
-              appearance={{
+            {mounted ? (
+              <OrganizationSwitcher
+                hidePersonal
+                appearance={{
                 elements: {
                   rootBox:
                     "w-full group-data-[collapsible=icon]:w-auto group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center",
@@ -139,7 +139,10 @@ export function DashboardSidebar() {
                     "size-4 text-sidebar-foreground group-data-[collapsible=icon]:hidden",
                 },
               }}
-            />
+              />
+            ) : (
+              <Skeleton className="border-border h-9 w-full rounded-md border group-data-[collapsible=icon]:size-9" />
+            )}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -153,12 +156,10 @@ export function DashboardSidebar() {
       <SidebarFooter className="gap-3 py-3">
         <SidebarMenu>
           <SidebarMenuItem>
-            <UserButton
-              showName={true}
-              fallback={
-                <Skeleton className="border-border h-8.5 w-full rounded-md border bg-white group-data-[collapsible=icon]:size-8" />
-              }
-              appearance={{
+            {mounted ? (
+              <UserButton
+                showName={true}
+                appearance={{
                 elements: {
                   rootBox:
                     "w-full group-data-[collapsible=icon]:w-auto group-data-[collapsible=icon]:flex! group-data-[collapsible=icon]:justify-center",
@@ -170,7 +171,10 @@ export function DashboardSidebar() {
                   userButtonAvatarBox: "size-6!",
                 },
               }}
-            />
+              />
+            ) : (
+              <Skeleton className="border-border h-8.5 w-full rounded-md border bg-white group-data-[collapsible=icon]:size-8" />
+            )}
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

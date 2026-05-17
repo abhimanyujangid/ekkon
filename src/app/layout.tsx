@@ -30,15 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <TRPCReactProvider>
-        <TooltipProvider>
-          <html lang="en" className={`${inter.variable} ${geistMono.variable}`}>
-            <body>{children}</body>
-          </html>
-          <Toaster />
-        </TooltipProvider>
-      </TRPCReactProvider>
-    </ClerkProvider>
+    <html lang="en" className={`${inter.variable} ${geistMono.variable}`}>
+      <body>
+        <ClerkProvider>
+          <TRPCReactProvider>
+            <TooltipProvider>
+              {children}
+              <Toaster />
+            </TooltipProvider>
+          </TRPCReactProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
