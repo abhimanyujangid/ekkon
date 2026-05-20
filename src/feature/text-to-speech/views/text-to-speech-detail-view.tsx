@@ -11,8 +11,6 @@ import { TTSVoicesProvider } from "@/src/feature/text-to-speech/contexts/tts-voi
 import { SettingsPanel } from "../components/settings-pannel";
 import { VoicePreviewMobile } from "../components/voice-preview-mobile";
 import { VoicePreviewPanel } from "../components/voice-preview-panel";
-// import { VoicePreviewPanel } from "../components/voice-preview-panel";
-// import { VoicePreviewMobile } from "../components/voice-preview-mobile";
 
 export function TextToSpeechDetailView({ generationId }: { generationId: string }) {
   const trpc = useTRPC();
