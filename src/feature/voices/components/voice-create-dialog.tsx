@@ -24,6 +24,7 @@ import { Button } from "@/src/components/ui/button";
 // import { useCheckout } from "@/features/billing/hooks/use-checkout";
 import { useCallback } from "react";
 import { toast } from "sonner";
+import { VoiceCreateForm } from "./voice-create-form";
 
 interface VoiceCreateDialogProps {
   children?: React.ReactNode;
@@ -36,21 +37,22 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
 
   // const { checkout } = useCheckout();
 
-  // const handleError = useCallback(
-  //   (message: string) => {
-  //     if (message === "SUBSCRIPTION_REQUIRED") {
-  //       toast.error("Subscription required", {
-  //         action: {
-  //           label: "Subscribe",
-  //           onClick: () => checkout(),
-  //         },
-  //       });
-  //     } else {
-  //       toast.error(message);
-  //     }
-  //   },
-  //   [checkout],
-  // );
+  const handleError = useCallback(
+    (message: string) => {
+      if (message === "SUBSCRIPTION_REQUIRED") {
+        // toast.error("Subscription required", {
+        //   action: {
+        //     label: "Subscribe",
+        //     onClick: () => checkout(),
+        //   },
+        // });
+      } else {
+        toast.error(message);
+      }
+    },
+    // [checkout],
+    [],
+  );
 
   if (isMobile) {
     return (
@@ -63,7 +65,7 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
               Upload or record an audio sample to add a new voice to your library.
             </DrawerDescription>
           </DrawerHeader>
-          {/* <VoiceCreateForm
+          <VoiceCreateForm
             scrollable
             onError={handleError}
             footer={(submit) => (
@@ -74,7 +76,7 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
                 </DrawerClose>
               </DrawerFooter>
             )}
-          /> */}
+          />
         </DrawerContent>
       </Drawer>
     );
