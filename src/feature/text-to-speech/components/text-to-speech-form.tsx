@@ -8,7 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { useTRPC } from "@/src/trpc/client";
 import { useAppForm } from "@/src/hooks/use-app-form";
-// import { useCheckout } from "@/src/feature/billing/hooks/use-checkout";
+import { useCheckout } from "@/src/feature/billing/hooks/use-checkout";
 
 const ttsFormSchema = z.object({
   text: z.string().min(1, "Please enter some text"),
@@ -45,7 +45,7 @@ export function TextToSpeechForm({
   const router = useRouter();
   const createMutation = useMutation(trpc.generations.create.mutationOptions({}));
 
-  // const { checkout } = useCheckout();
+  const { checkout } = useCheckout();
 
   const form = useAppForm({
     ...ttsFormOptions,
@@ -67,17 +67,17 @@ export function TextToSpeechForm({
         toast.success("Audio generated successfully!");
         router.push(`/text-to-speech/${data.id}`);
       } catch (error) {
-        // const message = error instanceof Error ? error.message : "Failed to generate audio";
-        // if (message === "SUBSCRIPTION_REQUIRED") {
-        //   toast.error("Subscription required", {
-        //     action: {
-        //       label: "Subscribe",
-        //       onClick: () => checkout(),
-        //     },
-        //   });
-        // } else {
-        //   toast.error(message);
-        // }
+        const message = error instanceof Error ? error.message : "Failed to generate audio";
+        if (message === "SUBSCRIPTION_REQUIRED") {
+          toast.error("Subscription required", {
+            action: {
+              label: "Subscribe",
+              onClick: () => checkout(),
+            },
+          });
+        } else {
+          toast.error(message);
+        }
       }
     },
   });

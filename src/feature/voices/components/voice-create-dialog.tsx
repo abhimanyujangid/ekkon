@@ -21,9 +21,8 @@ import {
   DrawerTrigger,
 } from "@/src/components/ui/drawer";
 import { useIsMobile } from "@/src/hooks/use-mobile";
-// import { VoiceCreateForm } from "./src/voice-create-form";
 import { Button } from "@/src/components/ui/button";
-// import { useCheckout } from "@/features/billing/hooks/use-checkout";
+import { useCheckout } from "@/src/feature/billing/hooks/use-checkout";
 import { useCallback } from "react";
 import { toast } from "sonner";
 import { VoiceCreateForm } from "./voice-create-form";
@@ -37,23 +36,22 @@ interface VoiceCreateDialogProps {
 export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateDialogProps) {
   const isMobile = useIsMobile();
 
-  // const { checkout } = useCheckout();
+  const { checkout } = useCheckout();
 
   const handleError = useCallback(
     (message: string) => {
       if (message === "SUBSCRIPTION_REQUIRED") {
-        // toast.error("Subscription required", {
-        //   action: {
-        //     label: "Subscribe",
-        //     onClick: () => checkout(),
-        //   },
-        // });
+        toast.error("Subscription required", {
+          action: {
+            label: "Subscribe",
+            onClick: () => checkout(),
+          },
+        });
       } else {
         toast.error(message);
       }
     },
-    // [checkout],
-    [],
+    [checkout],
   );
 
   if (isMobile) {
