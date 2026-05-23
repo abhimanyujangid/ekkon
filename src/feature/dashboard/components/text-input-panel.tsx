@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { ArrowRight, Sparkles, Type, BookOpen, Megaphone, Mic, Coins } from "lucide-react";
-import { Badge } from "@/src/components/ui/badge";
+import { useState, useRef } from "react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/src/components/ui/button";
 import { Textarea } from "@/src/components/ui/textarea";
 

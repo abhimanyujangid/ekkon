@@ -4,6 +4,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
+  // Experimental feature to increase the maximum body size for proxy requests
+  experimental: {
+    proxyClientMaxBodySize: 20 * 1024 * 1024, // 20MB
+  },
 };
 
 export default withSentryConfig(nextConfig, {
