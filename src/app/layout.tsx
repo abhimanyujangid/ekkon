@@ -5,6 +5,7 @@ import { Toaster } from "@/src/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { TooltipProvider } from "@/src/components/ui/tooltip";
 import { TRPCReactProvider } from "@/src/trpc/client";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -35,7 +36,7 @@ export default function RootLayout({
         <ClerkProvider>
           <TRPCReactProvider>
             <TooltipProvider>
-              {children}
+              <NuqsAdapter>{children}</NuqsAdapter>
               <Toaster />
             </TooltipProvider>
           </TRPCReactProvider>
