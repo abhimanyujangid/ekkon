@@ -41,7 +41,7 @@ export function VoiceCreateDialog({ children, open, onOpenChange }: VoiceCreateD
   const handleError = useCallback(
     (message: string) => {
       if (message === "SUBSCRIPTION_REQUIRED") {
-        toast.error("Subscription required", {
+        toast.error("You've used your free trial. Subscribe to continue.", {
           action: {
             label: "Subscribe",
             onClick: () => checkout(),
