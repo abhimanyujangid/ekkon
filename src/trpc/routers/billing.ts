@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { polar } from "@/src/lib/polar";
+import { getFreeCredits } from "@/src/lib/org-entitlements";
 import { createTRPCRouter, orgProcedure } from "../init";
 import { env } from "@/src/lib/env";
 
@@ -37,6 +38,8 @@ export const billingRouter = createTRPCRouter({
   }),
 
   getStatus: orgProcedure.query(async ({ ctx }) => {
+    const freeCredits = await getFreeCredits(ctx.orgId);
+
     try {
       const customerState = await polar.customers.getStateExternal({
         externalId: ctx.orgId,
@@ -56,6 +59,7 @@ export const billingRouter = createTRPCRouter({
         hasActiveSubscription,
         customerId: customerState.id,
         estimatedCostCents,
+        freeCredits,
       };
     } catch {
       // Customer doesn't exist yet in Polar
@@ -63,6 +67,7 @@ export const billingRouter = createTRPCRouter({
         hasActiveSubscription: false,
         customerId: null,
         estimatedCostCents: 0,
+        freeCredits,
       };
     }
   }),

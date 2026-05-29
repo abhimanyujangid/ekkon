@@ -76,3 +76,11 @@ model Generation {
   @@index([voiceId])
   @@index([orgId])
 }
+
+model OrgUsage {
+  orgId                  String   @id
+  freeVoiceCreationsUsed Int      @default(0)
+  freeGenerationsUsed    Int      @default(0)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+}

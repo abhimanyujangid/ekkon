@@ -218,6 +218,27 @@ interface VoiceCreateFormProps {
   onError?: (message: string) => void;
 }
 
+async function readVoiceCreateResponse(response: Response) {
+  const text = await response.text();
+
+  if (!text) {
+    if (!response.ok) {
+      throw new Error(`Request failed (${response.status})`);
+    }
+    return {};
+  }
+
+  try {
+    return JSON.parse(text) as { error?: string; message?: string };
+  } catch {
+    throw new Error(
+      response.ok
+        ? "Invalid server response"
+        : `Request failed (${response.status}). Please try again.`,
+    );
+  }
+}
+
 export function VoiceCreateForm({ scrollable, footer, onError }: VoiceCreateFormProps) {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
@@ -247,16 +268,17 @@ export function VoiceCreateForm({ scrollable, footer, onError }: VoiceCreateForm
 
       const response = await fetch(`/api/voices/create?${params.toString()}`, {
         method: "POST",
-        headers: { "Content-Type": file.type },
+        headers: { "Content-Type": file.type || "audio/wav" },
         body: file,
       });
 
+      const body = await readVoiceCreateResponse(response);
+
       if (!response.ok) {
-        const body = await response.json();
         throw new Error(body.error ?? "Failed to create voice");
       }
 
-      return response.json();
+      return body;
     },
   });
 
@@ -282,9 +304,14 @@ export function VoiceCreateForm({ scrollable, footer, onError }: VoiceCreateForm
         });
 
         toast.success("Voice created successfully!");
-        queryClient.invalidateQueries({
-          queryKey: trpc.voices.getAll.queryKey(),
-        });
+        await Promise.all([
+          queryClient.invalidateQueries({
+            queryKey: trpc.voices.getAll.queryKey(),
+          }),
+          queryClient.invalidateQueries({
+            queryKey: trpc.billing.getStatus.queryKey(),
+          }),
+        ]);
         form.reset();
       } catch (error) {
         const message = error instanceof Error ? error.message : "Failed to create voice";
